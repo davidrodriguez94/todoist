@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Clase que permite almacenar las tareas pendientes que tenemos por hacer
  *
@@ -7,53 +7,64 @@
  */
 public class Todoist
 {
-    //Primera tarea
-    private String tarea0;
-    //Segunda tarea
-    private String tarea1;
-    //Tercera tarea
-    private String tarea2;
+    //Almacena nuestras tareas
+    private ArrayList<String> tareas;
 
     /**
      * Constructor de la clase todoist. Crea un gestor con las 3 tareas vacias;
      */
     public Todoist()
     {
-        tarea0 = null;
-        tarea1 = null;
-        tarea2 = null;
+        tareas = new ArrayList<String>();
     }
-    
+
     /**
      * Inserta la tarea especificada en la posicion indicada
      */
-    public void addTarea(String nombreTarea, int posicion)
+    public void addTarea(String nombreTarea)
     {
-        if(posicion == 0){
-            tarea0 = nombreTarea;
-        }
-        else if (posicion == 1){
-            tarea1 = nombreTarea;
-        }
-        else if (posicion == 2){
-            tarea2 = nombreTarea;
-        }
+        tareas.add(nombreTarea);
     }
-    
+
     /**
      * Muestra por pantalla todas las tareas existentes
      */
     public void mostrarTareas()
     {
         System.out.println("Tareas existentes");
-        if(tarea0 != null){
-            System.out.println(tarea0);
+        System.out.println(tareas);
+    }
+
+    /**
+     * Devuelve el numero de tareas existentes
+     */
+    public int getNumeroTareas()
+    {
+        return tareas.size();
+    }
+
+    /**
+     * Imprime por pantalla el numero de tareas pendientes
+     */
+    public void mostrarNumeroTareasPendientes()
+    {
+        System.out.println("El numero de tareas pendientes es " + tareas.size());
+    }
+
+    /**
+     * Elimina la tarea que ocupa la posicion indicada como
+     * parametro (empezando en 0). Devuelve true si la tarea existe y se elimina,
+     * false en caso contrario
+     */
+    public boolean eliminarTarea(int posicionTarea)
+    {
+        boolean valorADevolver = false;
+        if(posicionTarea >= 0 && posicionTarea < tareas.size())
+        {
+            tareas.remove(posicionTarea);
+            valorADevolver = true;
         }
-        if(tarea1 != null){
-            System.out.println(tarea1);
-        }
-        if(tarea2 != null){
-            System.out.println(tarea2);
-        }
+        return valorADevolver;
     }
 }
+
